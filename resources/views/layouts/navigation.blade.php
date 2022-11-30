@@ -14,7 +14,7 @@
                     fill="white"/>
             </svg>
 
-            <span class="text-white text-2xl mx-2 font-semibold">{{ __('Dashboard') }}</span>
+            <span class="text-white text-2xl mx-2 font-semibold">{{ __('BIMS') }}</span>
         </div>
     </div>
 
@@ -63,7 +63,13 @@
                 class="p-2 mx-4 mt-2 space-y-2 overflow-hidden text-sm font-medium text-white bg-gray-700 bg-opacity-50 rounded-md shadow-inner"
                 aria-label="submenu">
                 <li class="px-2 py-1 transition-colors duration-150">
-                    <a class="w-full" href="#">Child menu</a>
+                    <a class="w-full" href="#">Child menu1</a>
+                </li>
+                <li class="px-2 py-1 transition-colors duration-150">
+                    <a class="w-full" href="#">Child menu2</a>
+                </li>
+                <li class="px-2 py-1 transition-colors duration-150">
+                    <a class="w-full" href="#">Child menu3</a>
                 </li>
             </ul>
         </template>
