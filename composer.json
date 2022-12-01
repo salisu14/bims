@@ -1,7 +1,6 @@
 {
-    "name": "BIMS",
+    
     "type": "project",
-    "description": "Inventory Management System.",
     "keywords": ["Bifli", "bims"],
     "license": "MIT",
     "require": {
@@ -10,7 +9,9 @@
         "laravel/breeze": "^1.4",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "laraveldaily/laravel-invoices": "^3.0",
+        "spatie/laravel-permission": "^5.7"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
