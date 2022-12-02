@@ -16,9 +16,7 @@ return new class extends Migration
         Schema::create('productions', function (Blueprint $table) {
             $table->id();
             $table->string('notes')->nullable();
-            $table->foreignIdFor(\App\Models\User::class)->constrained()
-                                             ->onUpdate('cascade')
-                                             ->onDelete('cascade');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

@@ -17,12 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('note')->nullable();
             $table->date('sales_date');
-            $table->foreignIdFor(\App\Models\Customer::class)->constrained()
-                                            ->onUpdate('cascade')
-                                            ->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\User::class)->constrained()
-                                            ->onUpdate('cascade')
-                                            ->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

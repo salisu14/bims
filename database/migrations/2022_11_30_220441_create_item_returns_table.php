@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('stores', function (Blueprint $table) {
+        Schema::create('item_returns', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('location');
-            $table->foreignIdFor(\App\Models\User::class)->constrained()
-                                             ->onUpdate('cascade')
-                                             ->onDelete('cascade');
+            $table->date('returned_at');
+            $table->decimal('refund', $precision = 8, $scale = 2);
+            $table->foreignId('sale_id')->constrained();
+            $table->foreignId('condition_return_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stores');
+        Schema::dropIfExists('item_returns');
     }
 };

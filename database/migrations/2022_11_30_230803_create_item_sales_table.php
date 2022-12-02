@@ -18,18 +18,10 @@ return new class extends Migration
             $table->integer('quantity');
             $table->decimal('unit_price', $precision = 16, $scale = 2);
             $table->decimal('discount', $precision = 16, $scale = 2)->default(0.00);
-            $table->foreignIdFor(\App\Models\Item::class)->constrained()
-                                            ->onUpdate('cascade')
-                                            ->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\Sale::class)->constrained()
-                                            ->onUpdate('cascade')
-                                            ->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\Payment::class)->constrained()
-                                            ->onUpdate('cascade')
-                                            ->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\User::class)->constrained()
-                                            ->onUpdate('cascade')
-                                            ->onDelete('cascade');
+            $table->foreignId('item_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('sale_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('payment_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

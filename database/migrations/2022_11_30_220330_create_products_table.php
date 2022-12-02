@@ -21,12 +21,8 @@ return new class extends Migration
             $table->decimal('cost', $precision = 16, $scale = 2);
             $table->date('manufactured_at');
             $table->boolean('is_finished');
-            $table->foreignIdFor(\App\Models\Production::class)->constrained()
-                                            ->onUpdate('cascade')
-                                            ->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\User::class)->constrained()
-                                             ->onUpdate('cascade')
-                                             ->onDelete('cascade');
+            $table->foreignId('production_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

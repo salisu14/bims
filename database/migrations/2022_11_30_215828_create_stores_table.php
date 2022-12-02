@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('taxes', function (Blueprint $table) {
+        Schema::create('stores', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('rate', $precision = 8, $scale = 2);
-            $table->foreignId('tax_type_id')->constrained();
-            $table->foreignId('store_id')->constrained();
+            $table->string('name')->unique();
+            $table->string('location');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('taxes');
+        Schema::dropIfExists('stores');
     }
 };

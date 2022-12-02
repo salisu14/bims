@@ -22,12 +22,8 @@ return new class extends Migration
             $table->string('barcode')->nullable();
             $table->date('manufactured_at');
             $table->boolean('is_finished');
-            $table->foreignIdFor(\App\Models\Category::class)->constrained()
-                                            ->onUpdate('cascade')
-                                            ->onDelete('cascade');
-            $table->foreignIdFor(\App\Models\User::class)->constrained()
-                                             ->onUpdate('cascade')
-                                             ->onDelete('cascade');
+            $table->foreignId('category_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }

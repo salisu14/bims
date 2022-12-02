@@ -23,11 +23,9 @@ return new class extends Migration
             $table->string('address1')->nullable();
             $table->string('address2')->nullable();
             $table->string('postal_code')->nullable();
-            $table->foreignIdFor(\App\Models\City::class)->constrained()->cascadeOnDelete;
-            $table->foreignIdFor(\App\Models\State::class)->constrained()->cascadeOnDelete;
-            $table->foreignIdFor(\App\Models\User::class)->constrained()
-                                             ->onUpdate('cascade')
-                                             ->onDelete('cascade');
+            $table->foreignId('city_id')->constrained();
+            $table->foreignId('state_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
