@@ -18,10 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -31,10 +27,31 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
+
     Route::view('about', 'about')->name('about');
 
-    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])->name('users.index');
+    Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
+
+    Route::resource('categories', \App\Http\Controllers\CategoryController::class);
+    
+    Route::resource('cities', \App\Http\Controllers\CityController::class);
+    
+    Route::resource('customers', \App\Http\Controllers\CustomerController::class);
+    
+    Route::resource('items', \App\Http\Controllers\ItemController::class);
+    
+    Route::resource('roles', \App\Http\Controllers\RoleController::class);
+    
+    Route::resource('states', \App\Http\Controllers\StateController::class);
+    
+    Route::resource('stores', \App\Http\Controllers\StoreController::class);
+    
+    Route::resource('users', \App\Http\Controllers\UserController::class);
+
+    Route::get('permissions', [\App\Http\Controllers\PermissionController::class, 'index'])->name('permissions.index');
+    
+    Route::resource('productions', \App\Http\Controllers\ProductionController::class);
 
     Route::get('profile', [\App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
-    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::put('profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update'); 
 });

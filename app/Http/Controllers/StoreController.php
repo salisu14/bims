@@ -15,7 +15,9 @@ class StoreController extends Controller
      */
     public function index()
     {
-        //
+        $stores = Store::query()->paginate(10);
+
+        return view('stores.index', compact(['stores']));
     }
 
     /**
@@ -25,7 +27,7 @@ class StoreController extends Controller
      */
     public function create()
     {
-        //
+        return view('stores.create');
     }
 
     /**

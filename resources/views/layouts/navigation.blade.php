@@ -29,13 +29,22 @@
             {{ __('Dashboard') }}
         </x-nav-link>
 
-        <x-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
+        <x-nav-link href="{{ route('customers.index') }}" :active="request()->routeIs('customers.index')">
             <x-slot name="icon">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                 </svg>
             </x-slot>
-            {{ __('Users') }}
+            {{ __('Customers') }}
+        </x-nav-link>
+
+        <x-nav-link href="{{ route('productions.index') }}" :active="request()->routeIs('productions.index')">
+            <x-slot name="icon">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+            </x-slot>
+            {{ __('Productions') }}
         </x-nav-link>
 
         <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
@@ -53,7 +62,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"></path>
                 </svg>
             </x-slot>
-            Two-level menu
+            Finished Goods
         </x-nav-link>
         <template x-if="isMultiLevelMenuOpen">
             <ul x-transition:enter="transition-all ease-in-out duration-300"
@@ -63,10 +72,10 @@
                 class="p-2 mx-4 mt-2 space-y-2 overflow-hidden text-sm font-medium text-white bg-gray-700 bg-opacity-50 rounded-md shadow-inner"
                 aria-label="submenu">
                 <li class="px-2 py-1 transition-colors duration-150">
-                    <a class="w-full" href="#">Child menu1</a>
+                    <a class="w-full" href="{{ route('items.index') }}">Categories</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150">
-                    <a class="w-full" href="#">Child menu2</a>
+                    <a class="w-full" href="{{ route('items.index') }}">Items</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150">
                     <a class="w-full" href="#">Child menu3</a>

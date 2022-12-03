@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
+use App\Models\Category;
 use App\Models\Item;
 
 class ItemController extends Controller
@@ -15,7 +16,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::query()->paginate(10);
+
+        return view('items.index', \compact(['items']));
     }
 
     /**
@@ -25,7 +28,9 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::query()->get();
+        
+        return view('items.create', \compact(['categories']));
     }
 
     /**
@@ -58,7 +63,9 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        $categories = Category::query()->get();
+        
+        return view('items.edit', \compact(['categories']));
     }
 
     /**

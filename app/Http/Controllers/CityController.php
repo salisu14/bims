@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCityRequest;
 use App\Http\Requests\UpdateCityRequest;
 use App\Models\City;
+use App\Models\State;
 
 class CityController extends Controller
 {
@@ -15,7 +16,9 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        $cities = City::query()->paginate(10);
+
+        return view('cities.index', \compact(['cities']));
     }
 
     /**
@@ -25,7 +28,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $states = State::query()->get();
+
+        return view('cities.create', \compact(['states']));
     }
 
     /**
@@ -58,7 +63,9 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        $states = State::query()->get();
+
+        return view('cities.edit', \compact(['states']));
     }
 
     /**

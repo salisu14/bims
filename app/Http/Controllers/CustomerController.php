@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCustomerRequest;
 use App\Http\Requests\UpdateCustomerRequest;
+use App\Models\City;
 use App\Models\Customer;
+use App\Models\State;
 
 class CustomerController extends Controller
 {
@@ -15,7 +17,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::query()->paginate(10);
+        return view('customers.index', \compact(['customers']));
     }
 
     /**
@@ -25,7 +28,10 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        $cities = City::query()->get();
+        $states = State::query()->get();
+
+        return view('customers.create', \compact(['cities', 'states']));
     }
 
     /**
@@ -58,7 +64,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return view('customers.edit');
     }
 
     /**

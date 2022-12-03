@@ -15,7 +15,9 @@ class StateController extends Controller
      */
     public function index()
     {
-        //
+        $states = State::query()->paginate(10);
+
+        return view('states.index', \compact(['states']));
     }
 
     /**
@@ -25,7 +27,7 @@ class StateController extends Controller
      */
     public function create()
     {
-        //
+        return view('states.create');
     }
 
     /**
@@ -58,7 +60,7 @@ class StateController extends Controller
      */
     public function edit(State $state)
     {
-        //
+        return view('states.edit', \compact(['state']));
     }
 
     /**
