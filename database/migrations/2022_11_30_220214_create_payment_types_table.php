@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('payment_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->foreignId('store_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('store_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

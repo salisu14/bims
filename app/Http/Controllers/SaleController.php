@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSaleRequest;
 use App\Http\Requests\UpdateSaleRequest;
+use App\Models\Category;
 use App\Models\Sale;
 
 class SaleController extends Controller
@@ -15,7 +16,9 @@ class SaleController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sale::query()->paginate();
+
+        return view('sales.index', \compact(['sales']));
     }
 
     /**
@@ -25,7 +28,9 @@ class SaleController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::query()->get();
+
+        return view('sales.create', \compact(['categories']));
     }
 
     /**

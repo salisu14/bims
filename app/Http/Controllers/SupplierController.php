@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
+use App\Models\City;
+use App\Models\State;
 use App\Models\Supplier;
 
 class SupplierController extends Controller
@@ -15,7 +17,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::query()->paginate(10);
+
+        return view('suppliers.index', \compact(['suppliers']));
     }
 
     /**
@@ -25,7 +29,11 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        $cities = City::query()->get();
+
+        $states = State::query()->get();
+
+        return view('suppliers.create', \compact(['cities', 'states']));
     }
 
     /**
@@ -36,7 +44,13 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
-        //
+        // $this->authorize('create', Supplier::class);
+
+        $success = auth()->user()->suppliers()->create($request->validated());
+
+        if($success) {
+            return redirect()->route('suppliers.index')->withSuccess('Supplier created successfully.');
+        } 
     }
 
     /**
@@ -47,7 +61,7 @@ class SupplierController extends Controller
      */
     public function show(Supplier $supplier)
     {
-        //
+        return view('suppliers.show', \compact(['supplier']));
     }
 
     /**
@@ -58,7 +72,11 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        $cities = City::query()->get();
+
+        $states = State::query()->get();
+
+        return view('suppliers.edit', \compact(['supplier', 'cities', 'states']));
     }
 
     /**
@@ -70,7 +88,13 @@ class SupplierController extends Controller
      */
     public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
-        //
+        // $this->authorize('update', $state);
+
+        $success = $supplier->update($request->validated());
+
+        if($success) {
+            return redirect()->route('suppliers.index')->withSuccess('Supplier updated successfully.');
+        }
     }
 
     /**
@@ -81,6 +105,12 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        // $this->authorize('delete', $state);
+
+        $success = $supplier->delete();
+
+        if($success) {
+            return redirect()->route('suppliers.index')->withSuccess('Supplier deleted successfully.');
+        }
     }
 }

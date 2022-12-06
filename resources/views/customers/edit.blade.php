@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Edit Deceased Record') }}
+        {{ __('Edit Customer Record') }}
     </x-slot>
 
     <div class="inline-block overflow-hidden min-w-full rounded-lg shadow">
@@ -11,29 +11,17 @@
 	        <!-- Validation Errors -->
     		<x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
-		<form method="POST" action="{{ route('deceaseds.update', $deceased) }}">
+		<form method="POST" action="{{ route('customers.update', $customer) }}">
 			@csrf
 			@method('PUT')
 			
 			<!-- First Name -->
 			<div>
-				<x-label for="fname" :value="__('First Name')"/>
+				<x-label for="name" :value="__('Full Name')"/>
 				<x-input type="text"
-					name="first_name"
-					id="fname"
-					value="{{ $deceased->first_name }}"
-					required
-					autofocus
-				/>
-			</div>
-
-			<!-- Last Name -->
-			<div class="mt-3">
-				<x-label for="lname" :value="__('Last Name')"/>
-				<x-input type="text"
-					name="last_name"
-					id="lname"
-					value="{{ $deceased->last_name }}"
+					name="name"
+					id="name"
+					value="{{ $customer->name }}"
 					required
 					autofocus
 				/>
@@ -46,18 +34,18 @@
 					type="email"
 					name="email"
 					id="email"
-					value="{{ old('email') }}"
+					value="{{ $customer->email }}"
 				    required
 				/>
 			</div>
 
 			<!-- Phone Number -->
 			<div class="mt-3">
-				<x-label for="phone_number" :value="__('Phone Number')"/>
+				<x-label for="phone" :value="__('Phone Number')"/>
 				<x-input type="text"
-					name="phone_number"
-					id="phone_number"
-					value="{{ old('phone_number') }}"
+					name="phone"
+					id="phone"
+					value="{{ $customer->phone }}"
 					autofocus
 				/>
 			</div>
@@ -68,7 +56,7 @@
 					<x-input type="text"
 						name="address"
 						id="address"
-						value="{{ old('address') }}"
+						value="{{ $customer->address }}"
 						autofocus
 					/>
 				</div>
@@ -79,7 +67,7 @@
 					<x-input type="text"
 						name="postal_code"
 						id="postal_code"
-						value="{{ old('postal_code') }}"
+						value="{{ $customer->postal_code }}"
 						autofocus
 					/>
 				</div>
@@ -89,7 +77,7 @@
 					<x-label for="city" :value="__('Choose City')"/>
 					<select name="city_id" id="city" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
 						@foreach($cities as $city)
-							<option value="{{ $city->id }}" @selected(old('city') == $city)>
+							<option value="{{ $city->id }}" {{ ($city->id === $customer->city_id) ? "selected": "" }}>
 								{{ $city->name  }}
 							</option>
 						@endforeach
@@ -101,7 +89,7 @@
 					<x-label for="state" :value="__('Choose State')"/>
 					<select name="state_id" id="state" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
 						@foreach($states as $state)
-							<option value="{{ $state->id }}" @selected(old('state') == $state)>
+							<option value="{{ $state->id }}" {{ ($state->id === $customer->state_id) ? "selected": "" }}>
 								{{ $state->name  }}
 							</option>
 						@endforeach

@@ -38,7 +38,13 @@ class StateController extends Controller
      */
     public function store(StoreStateRequest $request)
     {
-        //
+        // $this->authorize('create', State::class);
+    
+        $success = auth()->user()->states()->create($request->validated());
+
+        if($success) {
+            return redirect()->route('states.index')->withSuccess('State created successfully.');
+        }        
     }
 
     /**
@@ -72,7 +78,13 @@ class StateController extends Controller
      */
     public function update(UpdateStateRequest $request, State $state)
     {
-        //
+        // $this->authorize('update', $state);
+
+        $success = $state->update($request->validated());
+
+        if($success) {
+            return redirect()->route('states.index')->withSuccess('State updated successfully.');
+        }
     }
 
     /**
@@ -83,6 +95,12 @@ class StateController extends Controller
      */
     public function destroy(State $state)
     {
-        //
+        // $this->authorize('delete', $state);
+
+        $success = $state->delete();
+
+        if($success) {
+            return redirect()->route('states.index')->withSuccess('State deleted successfully.');
+        }
     }
 }

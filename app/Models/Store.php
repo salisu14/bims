@@ -9,6 +9,8 @@ class Store extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'location'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(

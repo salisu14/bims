@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('notes');
             $table->integer('quantity');
             $table->decimal('cost', $precision = 16, $scale = 2);
-            $table->date('manufactured_at');
             $table->boolean('is_finished');
-            $table->foreignId('production_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->date('manufactured_at');
+            $table->foreignId('production_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('supplier_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

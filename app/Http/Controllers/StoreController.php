@@ -38,7 +38,13 @@ class StoreController extends Controller
      */
     public function store(StoreStoreRequest $request)
     {
-        //
+        // $this->authorize('create', State::class);
+    
+        $success = auth()->user()->stores()->create($request->validated());
+
+        if($success) {
+            return redirect()->route('stores.index')->withSuccess('Store created successfully.');
+        }   
     }
 
     /**
@@ -60,7 +66,7 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
-        //
+        return view('stores.edit', \compact(['store']));
     }
 
     /**
@@ -72,7 +78,13 @@ class StoreController extends Controller
      */
     public function update(UpdateStoreRequest $request, Store $store)
     {
-        //
+        // $this->authorize('update', $store);
+
+        $success = $store->update($request->validated());
+
+        if($success) {
+            return redirect()->route('stores.index')->withSuccess('Store updated successfully.');
+        }
     }
 
     /**
@@ -83,6 +95,12 @@ class StoreController extends Controller
      */
     public function destroy(Store $store)
     {
-        //
+        // $this->authorize('delete', $store);
+
+        $success = $store->delete();
+
+        if($success) {
+            return redirect()->route('stores.index')->withSuccess('Store deleted successfully.');
+        }
     }
 }

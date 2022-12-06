@@ -24,20 +24,20 @@ class Permission extends \Spatie\Permission\Models\Permission
             'delete_roles',
             'restore_roles',
 
-            'view_deceaseds',
-            'create_deceeaseds',
-            'edit_deceeaseds',
-            'delete_deceeaseds',
+            'view_state',
+            'create_states',
+            'edit_states',
+            'delete_states',
 
-            'view_widows',
+            'view_cities',
             'create_widos',
-            'edit_widows',
-            'delete_widows',
+            'edit_cities',
+            'delete_cities',
 
-            'view_orphans',
-            'create_orphans',
-            'edit_orphans',
-            'delete_orphans',
+            'view_items',
+            'create_items',
+            'edit_items',
+            'delete_items',
         ];
     }
 

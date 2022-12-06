@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('note')->nullable();
             $table->date('sales_date');
-            $table->foreignId('customer_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('customer_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

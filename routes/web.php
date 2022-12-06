@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth.login');
+})->middleware('guest');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -27,8 +31,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
-
-    Route::view('about', 'about')->name('about');
 
     Route::get('/dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
 
@@ -42,9 +44,13 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('roles', \App\Http\Controllers\RoleController::class);
     
+    Route::resource('sales', \App\Http\Controllers\SaleController::class);
+    
     Route::resource('states', \App\Http\Controllers\StateController::class);
     
     Route::resource('stores', \App\Http\Controllers\StoreController::class);
+    
+    Route::resource('suppliers', \App\Http\Controllers\SupplierController::class);
     
     Route::resource('users', \App\Http\Controllers\UserController::class);
 

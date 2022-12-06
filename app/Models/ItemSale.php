@@ -9,6 +9,14 @@ class ItemSale extends Model
 {
     use HasFactory;
 
+    public function payment(): BelongsTo
+    {
+        return $this->belongsTo(
+            related: Payment::class,
+            foreignKey: 'payment_id',
+        );
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(

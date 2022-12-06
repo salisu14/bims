@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->date('returned_at');
             $table->decimal('refund', $precision = 8, $scale = 2);
-            $table->foreignId('sale_id')->constrained();
-            $table->foreignId('condition_return_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('sale_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('condition_return_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

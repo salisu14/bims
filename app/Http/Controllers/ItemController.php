@@ -29,7 +29,7 @@ class ItemController extends Controller
     public function create()
     {
         $categories = Category::query()->get();
-        
+
         return view('items.create', \compact(['categories']));
     }
 
@@ -41,7 +41,21 @@ class ItemController extends Controller
      */
     public function store(StoreItemRequest $request)
     {
-        //
+        $validated = $request->validated();
+        
+        $validated['manufactured_at'] = now();
+        
+        $validated['is_finished'] = 1;
+
+        // dd($validated);
+
+        $success = auth()->user()->items()->create($validated);
+
+        // dd($success);
+
+        if($success) {
+            return redirect()->route('items.index')->withSuccess('Item added successfully.');
+        }
     }
 
     /**
@@ -65,7 +79,7 @@ class ItemController extends Controller
     {
         $categories = Category::query()->get();
         
-        return view('items.edit', \compact(['categories']));
+        return view('items.edit', \compact(['item', 'categories']));
     }
 
     /**
@@ -77,7 +91,17 @@ class ItemController extends Controller
      */
     public function update(UpdateItemRequest $request, Item $item)
     {
-        //
+        $validated = $request->validated();
+        
+        $validated['manufactured_at'] = now();
+        
+        $validated['is_finished'] = 1;
+
+        $success = $item->update($validated);
+
+        if($success) {
+            return redirect()->route('items.index')->withSuccess('Item updated successfully.');
+        }
     }
 
     /**
@@ -88,6 +112,10 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $success = $item->delete();
+
+        if($success) {
+            return redirect()->route('items.index')->withSuccess('Item deleted successfully.');
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateItemRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateItemRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,13 @@ class UpdateItemRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'          => ['required', 'string', 'max:255'],
+            'description'   => ['nullable', 'string', 'max:255'], 
+            'price'         => ['required', 'max:255'], 
+            'cost'          => ['required', 'string', 'max:255'], 
+            'barcode'       => ['nullable', 'string', 'max:255'], 
+            'is_finished'   => ['nullable', 'bool', 'max:255'], 
+            'category_id'   => ['required',],
         ];
     }
 }

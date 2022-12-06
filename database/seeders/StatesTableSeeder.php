@@ -19,6 +19,7 @@ class StatesTableSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'Kano',
+                'user_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

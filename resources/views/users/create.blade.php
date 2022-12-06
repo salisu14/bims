@@ -1,11 +1,11 @@
-<x-admin-layout>
+<x-app-layout>
     <x-slot name="header">
         {{ __('Create User')  }}
     </x-slot>
 
     <x-flash />
            
-    <x-anchor-link :href="route('admin.users.index')">Back</x-anchor-link>
+    <x-anchor-link :href="route('users.index')">Back</x-anchor-link>
 
     
     <div class="inline-block overflow-hidden min-w-full rounded-lg shadow mt-4">
@@ -13,9 +13,9 @@
         <div class="flex justify-center items-center bg-gray-200 px-6">
             <div class="p-6 max-w-xl w-full mx-auto py-10 bg-white shadow-md rounded-lg">
                 <!-- Validation Errors -->
-                <x-auth-validation-errors class="mb-4" :errors="$errors"/>
+                
 
-                <form method="POST" action="{{ route('admin.users.store') }}">
+                <form method="POST" action="{{ route('users.store') }}">
                     @csrf
 
                     <!-- Name -->

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('note')->nullable();
             $table->string('address')->nullable();
             $table->string('postal_code')->nullable();
-            $table->foreignId('city_id')->constrained();
-            $table->foreignId('state_id')->constrained();
+            $table->foreignId('city_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('state_id')->index()->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

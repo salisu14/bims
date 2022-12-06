@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('productions', function (Blueprint $table) {
             $table->id();
             $table->string('notes')->nullable();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

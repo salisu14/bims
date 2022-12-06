@@ -13,7 +13,7 @@ class StoreSupplierRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreSupplierRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255'], 
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'string', 'min:11', 'max:11'], 
+            'website' => ['nullable', 'url', 'max:255'], 
+            'address1' => ['required', 'string', 'max:150'], 
+            'address2' => ['nullable', 'string', 'max:150'], 
+            'note' => ['nullable', 'string', 'max:255'], 
+            'postal_code' => ['nullable', 'string', 'max:255'], 
+            'city_id' => ['required',], 
+            'state_id' => ['required',]
         ];
     }
 }

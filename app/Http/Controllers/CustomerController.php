@@ -18,6 +18,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::query()->paginate(10);
+        
         return view('customers.index', \compact(['customers']));
     }
 
@@ -29,6 +30,7 @@ class CustomerController extends Controller
     public function create()
     {
         $cities = City::query()->get();
+
         $states = State::query()->get();
 
         return view('customers.create', \compact(['cities', 'states']));
@@ -42,7 +44,9 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        //
+        $category = auth()->user()->customers()->create($request->validated());
+
+        return redirect()->route('customers.index')->withSuccess('Customer added successfully.');
     }
 
     /**
@@ -53,7 +57,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('customers.show', \compact('customer'));
     }
 
     /**
@@ -64,7 +68,11 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        return view('customers.edit');
+        $cities = City::query()->get();
+
+        $states = State::query()->get();
+
+        return view('customers.edit', \compact(['customer', 'cities', 'states']));
     }
 
     /**
@@ -76,7 +84,9 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        //
+        $customer->update($request->validated());
+
+        return redirect()->route('customers.index')->withSuccess('Customer updated successfully.');
     }
 
     /**
@@ -87,6 +97,8 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        if(! is_null($customer)) {
+            $customer->delete();
+        }
     }
 }

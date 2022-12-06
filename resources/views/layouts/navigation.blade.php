@@ -29,6 +29,24 @@
             {{ __('Dashboard') }}
         </x-nav-link>
 
+        <x-nav-link href="{{ route('stores.index') }}" :active="request()->routeIs('stores.index')">
+            <x-slot name="icon">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+            </x-slot>
+            {{ __('Stores') }}
+        </x-nav-link>
+
+        <x-nav-link href="{{ route('suppliers.index') }}" :active="request()->routeIs('suppliers.index')">
+            <x-slot name="icon">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+            </x-slot>
+            {{ __('Supplier') }}
+        </x-nav-link>
+
         <x-nav-link href="{{ route('customers.index') }}" :active="request()->routeIs('customers.index')">
             <x-slot name="icon">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -47,13 +65,31 @@
             {{ __('Productions') }}
         </x-nav-link>
 
-        <x-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+        <x-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
             <x-slot name="icon">
                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                     <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
                 </svg>
             </x-slot>
-            {{ __('About us') }}
+            {{ __('Sales') }}
+        </x-nav-link>
+
+        <x-nav-link href="{{ route('states.index') }}" :active="request()->routeIs('states.index')">
+            <x-slot name="icon">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                </svg>
+            </x-slot>
+            {{ __('States') }}
+        </x-nav-link>
+
+        <x-nav-link href="{{ route('cities.index') }}" :active="request()->routeIs('cities.index')">
+            <x-slot name="icon">
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M4.083 9h1.946c.089-1.546.383-2.97.837-4.118A6.004 6.004 0 004.083 9zM10 2a8 8 0 100 16 8 8 0 000-16zm0 2c-.076 0-.232.032-.465.262-.238.234-.497.623-.737 1.182-.389.907-.673 2.142-.766 3.556h3.936c-.093-1.414-.377-2.649-.766-3.556-.24-.56-.5-.948-.737-1.182C10.232 4.032 10.076 4 10 4zm3.971 5c-.089-1.546-.383-2.97-.837-4.118A6.004 6.004 0 0115.917 9h-1.946zm-2.003 2H8.032c.093 1.414.377 2.649.766 3.556.24.56.5.948.737 1.182.233.23.389.262.465.262.076 0 .232-.032.465-.262.238-.234.498-.623.737-1.182.389-.907.673-2.142.766-3.556zm1.166 4.118c.454-1.147.748-2.572.837-4.118h1.946a6.004 6.004 0 01-2.783 4.118zm-6.268 0C6.412 13.97 6.118 12.546 6.03 11H4.083a6.004 6.004 0 002.783 4.118z" clip-rule="evenodd" />
+                </svg>
+            </x-slot>
+            {{ __('Cities') }}
         </x-nav-link>
 
         <x-nav-link href="#" @click="isMultiLevelMenuOpen = !isMultiLevelMenuOpen">
@@ -72,13 +108,10 @@
                 class="p-2 mx-4 mt-2 space-y-2 overflow-hidden text-sm font-medium text-white bg-gray-700 bg-opacity-50 rounded-md shadow-inner"
                 aria-label="submenu">
                 <li class="px-2 py-1 transition-colors duration-150">
-                    <a class="w-full" href="{{ route('items.index') }}">Categories</a>
+                    <a class="w-full" href="{{ route('categories.index') }}">Categories</a>
                 </li>
                 <li class="px-2 py-1 transition-colors duration-150">
                     <a class="w-full" href="{{ route('items.index') }}">Items</a>
-                </li>
-                <li class="px-2 py-1 transition-colors duration-150">
-                    <a class="w-full" href="#">Child menu3</a>
                 </li>
             </ul>
         </template>

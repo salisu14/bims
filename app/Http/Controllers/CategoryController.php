@@ -38,18 +38,12 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
-    }
+        $category = auth()->user()->categories()->create($request->validated());
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
+        if(! is_null($category)) {
+
+            return redirect()->route('categories.index')->withSuccess('Category added successfully.');
+        }        
     }
 
     /**
@@ -60,7 +54,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', \compact(['category']));
     }
 
     /**
@@ -72,7 +66,11 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $success = $category->update($request->validated());
+
+        if($success) {
+            return redirect()->route('categories.index')->withSuccess('Category updated successfully.');
+        }
     }
 
     /**
@@ -83,6 +81,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $success = $category->delete();
+
+        if($success) {
+            return redirect()->route('categories.index')->withSuccess('Category deleted successfully.');
+        }
     }
 }

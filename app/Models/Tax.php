@@ -9,6 +9,14 @@ class Tax extends Model
 {
     use HasFactory;
 
+    public function taxType(): BelongsTo
+    {
+        return $this->belongsTo(
+            related: TaxType::class,
+            foreignKey: 'tax_type_id',
+        );
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(

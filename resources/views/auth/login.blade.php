@@ -1,7 +1,11 @@
 <x-guest-layout>
-    <a href="/" class="flex justify-center items-center">
+    <!-- <a href="/login" class="flex justify-center items-center">
         <x-application-logo class="w-20 h-20 fill-current text-gray-500"/>
-    </a>
+    </a> -->
+
+    <div class="flex justify-center items-center">
+        <h3 class="text-red-500 text-center text-2xl">Bifli Inventory Management System</h3>
+    </div>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')"/>

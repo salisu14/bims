@@ -41,7 +41,13 @@ class CityController extends Controller
      */
     public function store(StoreCityRequest $request)
     {
-        //
+        // $this->authorize('create', City::class);
+
+        $success = auth()->user()->cities()->create($request->validated());
+
+        if($success) {
+            return redirect()->route('cities.store')->withSuccess('City added successfully.');
+        }   
     }
 
     /**
@@ -65,7 +71,7 @@ class CityController extends Controller
     {
         $states = State::query()->get();
 
-        return view('cities.edit', \compact(['states']));
+        return view('cities.edit', \compact(['city','states']));
     }
 
     /**
@@ -77,7 +83,13 @@ class CityController extends Controller
      */
     public function update(UpdateCityRequest $request, City $city)
     {
-        //
+        // $this->authorize('update', $city);
+
+        $success = $city->update($request->validated());
+
+        if($success) {
+            return redirect()->route('cities.index')->withSuccess('City updated successfully.');
+        }
     }
 
     /**
@@ -88,6 +100,12 @@ class CityController extends Controller
      */
     public function destroy(City $city)
     {
-        //
+        // $this->authorize('delete', $city);
+
+        $success = $city->delete();
+
+        if($success) {
+            return redirect()->route('cities.index')->withSuccess('City deleted successfully.');
+        }
     }
 }

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Register Customer') }}
+        {{ __('Register Supplier') }}
     </x-slot>
 
     <div class="inline-block overflow-hidden min-w-full rounded-lg shadow">
@@ -11,12 +11,12 @@
 				<x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
 			
-				<form method="POST" action="{{ route('customers.store') }}">
+				<form method="POST" action="{{ route('suppliers.store') }}">
 					@csrf
 
 					<!-- First Name -->
 					<div>
-						<x-label for="name" :value="__('Customer Name')"/>
+						<x-label for="name" :value="__('Supplier Name')"/>
 						<x-input type="text"
 							name="name"
 							id="name"
@@ -51,11 +51,22 @@
 
 					<!-- Address -->
 					<div class="mt-3">
-						<x-label for="address" :value="__('Address')"/>
+						<x-label for="address1" :value="__('Address 1')"/>
 						<x-input type="text"
-							name="address"
-							id="address"
-							value="{{ old('address') }}"
+							name="address1"
+							id="address1"
+							value="{{ old('address1') }}"
+							autofocus
+						/>
+					</div>
+
+					<!-- Address 2-->
+					<div class="mt-3">
+						<x-label for="address2" :value="__('Address 2')"/>
+						<x-input type="text"
+							name="address2"
+							id="address2"
+							value="{{ old('address2') }}"
 							autofocus
 						/>
 					</div>
@@ -69,6 +80,26 @@
 							value="{{ old('postal_code') }}"
 							autofocus
 						/>
+					</div>
+
+					<!-- Website -->
+					<div class="mt-3">
+						<x-label for="website" :value="__('Website')"/>
+						<x-input type="url"
+							name="website"
+							id="website"
+							value="{{ old('website') }}"
+							autofocus
+						/>
+					</div>
+
+					<!-- Note -->
+					<div class="mt-3">
+							<x-label for="note" :value="__('Note')"/>
+						<textarea class="block mt-1 w-full rounded-md form-input focus:border-indigo-600"
+							name="note"
+							id="note"
+						>{{ old('note') }}</textarea>
 					</div>
 
 					<!-- City -->

@@ -17,15 +17,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('phone')->nullable()->unique();
+            $table->string('phone')->unique();
             $table->string('note')->nullable();
             $table->string('website')->nullable();
-            $table->string('address1')->nullable();
+            $table->string('address1');
             $table->string('address2')->nullable();
             $table->string('postal_code')->nullable();
-            $table->foreignId('city_id')->constrained();
-            $table->foreignId('state_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('city_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('state_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

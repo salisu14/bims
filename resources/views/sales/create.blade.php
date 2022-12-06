@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Edit Item') }}
+        {{ __('Make Sale') }}
     </x-slot>
 
     <div class="inline-block overflow-hidden min-w-full rounded-lg shadow">
@@ -9,11 +9,10 @@
 			<div class="p-6 max-w-sm w-full bg-white shadow-md rounded-md">
 				
 				<!-- Validation Errors -->
-			
+				<x-auth-validation-errors class="mb-4" :errors="$errors"/>
 
-				<form method="POST" action="{{ route('items.update', $item) }}">
+				<form method="POST" action="{{ route('sales.store') }}">
 					@csrf
-					@method('PUT')
 
 					<!-- Name -->
 					<div>
@@ -21,33 +20,33 @@
 						<x-input type="text"
 							name="name"
 							id="name"
-							value="{{ $item->name }}"
+							value="{{ old('name') }}"
 							required
 							autofocus
 						/>
 					</div>
 
 					<!-- Price -->
-					<div class="mt-2">
+					<div class="mt-3">
 						<x-label for="price" :value="__('Item Price')"/>
-						<x-input type="text"
+						<x-input
+							text="text"
 							name="price"
 							id="price"
-							value="{{ $item->price }}"
 							required
-							autofocus
+							value="{{ old('price') }}"
 						/>
 					</div>
 
 					<!-- Cost -->
-					<div class="mt-2">
-						<x-label for="cost" :value="__('Cost')"/>
-						<x-input type="text"
+					<div class="mt-3">
+						<x-label for="Cost" :value="__('Cost')"/>
+						<x-input
+						    type="text"
 							name="cost"
 							id="cost"
-							value="{{ $item->cost }}"
 							required
-							autofocus
+							value="{{ old('cost') }}"
 						/>
 					</div>
 
@@ -57,29 +56,27 @@
 						<textarea class="block mt-1 w-full rounded-md form-input focus:border-indigo-600"
 							name="description"
 							id="description"
-							required>{{ trim($item->description)  }}</textarea>
+							required>{{ old('description') }}</textarea>
 					</div>
 
 					<!-- Category -->
 					<div class="mt-3">
-						<x-label for="category" :value="__('Choose Category')"/>
-						<select name="category_id" id="category" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
+						<x-label for="category_id" :value="__('Choose Category')"/>
+						<select name="category_id" id="category_id" class="block mt-1 w-full rounded-md form-input focus:border-indigo-600">
 						@foreach($categories as $category)
-							<option value="{{ $category->id }}" {{ ($category->id == $item->category_id) ? "selected": "" }}>{{ $category->name  }}</option>
+							<option value="{{ $category->id }}">{{ $category->name  }}</option>
 						@endforeach
 						</select>
 					</div>
 
-						
+
 					<div class="flex flex-col items-end mt-4">
-						@can('item_create')
 						<x-button class="w-full">
 						{{ __('Submit') }}
 						</x-button>
-						@endcan
 					</div>
 				</form>
 			</div>
 		</div>
     </div>
-</x-admin-layout>
+</x-app-layout>

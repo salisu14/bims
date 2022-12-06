@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('rate', $precision = 8, $scale = 2);
-            $table->foreignId('tax_type_id')->constrained();
-            $table->foreignId('store_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('tax_type_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('store_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

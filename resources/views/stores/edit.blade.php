@@ -9,7 +9,7 @@
 				
 				<!-- Validation Errors -->
 
-				<form method="POST" action="{{ route('stores.update', $item) }}">
+				<form method="POST" action="{{ route('stores.update', $store) }}">
 					@csrf
 					@method('PUT')
 
@@ -19,7 +19,7 @@
 						<x-input type="text"
 							name="name"
 							id="name"
-							value="{{ $item->name }}"
+							value="{{ $store->name }}"
 							required
 							autofocus
 						/>
@@ -27,11 +27,11 @@
 
 					<!-- Location -->
 					<div class="mt-3">
-						<x-label for="location" :value="__('Location')"/>
+						<x-label for="location" :value="__('Store Location')"/>
 						<textarea class="block mt-1 w-full rounded-md form-input focus:border-indigo-600"
-							name="description"
-							id="description"
-							required>{{ trim($item->description)  }}</textarea>
+							name="location"
+							id="location"
+							required>{{ trim($store->location) }}</textarea>
 					</div>
 						
 					<div class="flex flex-col stores-end mt-4">
