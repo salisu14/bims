@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Sales') }}
+        {{ __('Sales - under construction') }}
     </x-slot>
 
     <x-flash />
