@@ -1,8 +1,0 @@
-# Each route describes how an incoming URL is going to be processed by Platform.sh.
-"https://{default}/":
-    type: upstream
-    upstream: "bims:http"
-
-"https://{default}/":
-    type: redirect
-    to: "https://{default}/"
